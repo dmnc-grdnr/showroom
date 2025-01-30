@@ -7,7 +7,7 @@ fhir_api = "http://BLAZE_SRC_APP:8080/fhir"
 
 if __name__ == "__main__":
     count_success = 0
-    for item in Path('./data/output/fhir').iterdir():
+    for item in Path('./data/fhir').iterdir():
         if item.is_file():
 
             with open(item, 'r') as resource_file:
