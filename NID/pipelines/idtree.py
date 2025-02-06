@@ -19,7 +19,6 @@ def feature_ranking(data, labels, random_state=35, shuffle=True, train_size=0.8)
     impurities_ranking = []
     X_train_mod = X_train.copy()
     for i in range(len(features)):
-        print(f"Round {i + 1} / {len(features)}")
         # Es wird ein Entscheidungsbaumstumpf trainiert
         model = tree.DecisionTreeClassifier(random_state=random_state, max_depth=1)
         model = model.fit(X_train_mod, y_train)
