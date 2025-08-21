@@ -1,6 +1,6 @@
 # [JDA]
 
-### Job description analysis - a collection analyses based on structured IT job descriptions
+### Job description analysis - a collection of analyses on structured IT job descriptions
 
 This project features:
 
