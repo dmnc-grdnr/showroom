@@ -1,4 +1,4 @@
-Quelle, Ziel, Anzahl Pakete
+source, destination, package count
 192.168.0.22,Extern,130
 192.168.0.22,192.168.0.255,29
 Extern,192.168.0.1,7
