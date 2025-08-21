@@ -13,7 +13,6 @@ HELP_TCPDUMP = "tcpdump capture file"
 
 file_path = ""
 address_space = ""
-output_path = ""
 
 
 def get_available_edges(num_vertices):
@@ -101,7 +100,7 @@ def scale_edges(input):
     return [round((x + 1) * factor) for x in count]
 
 
-def plot_network(graph):
+def plot_network(graph, output_path=None):
     visual_style = dict()
     visual_style["edge_color"] = "silver"
     visual_style["vertex_color"] = ["deepskyblue" if x == "Extern" else "aquamarine" for x in graph.vs["name"]]
@@ -114,7 +113,7 @@ def plot_network(graph):
     visual_style["margin"] = 70
     if output_path:
         return ig.plot(graph, output_path, **visual_style)
-    return ig.plot(graph, "test_visualization.png", **visual_style)
+    return ig.plot(graph, target=None, **visual_style)
 
 
 def main(is_csv):
