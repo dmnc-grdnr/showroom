@@ -4,15 +4,14 @@ from sklearn.model_selection import GridSearchCV, StratifiedKFold, train_test_sp
 import pandas as pd
 
 
-# Berechnet die Gini Importance gemäß Kapitel 3.1.2
+# computes the Gini importance scores (see Sarker 2020)
 def gini_delta(impurities, samples):
     delta = impurities[0] * samples[0] / samples[0]
     delta -= impurities[1] * samples[1] / samples[0]
     delta -= impurities[2] * samples[2] / samples[0]
     return delta
 
-# Erzeugt das Feature-Ranking für IntruDTree
-# Führt das Ranking der Feature durch
+# computes the ranking for feature selection
 def feature_ranking(data, labels, random_state=35, shuffle=True, train_size=0.8):
     X_train, X_test, y_train, y_test = train_test_split(data, labels, test_size=train_size, random_state=random_state)
     features = X_train.columns
@@ -50,7 +49,7 @@ def feature_ranking(data, labels, random_state=35, shuffle=True, train_size=0.8)
     return result
 
 
-# Führt das Pruning der Modelle CART und IntruDTree aus
+# computes alphas for CART models
 def compute_alphas(model, X_train, y_train, random_state=35):
     path = model.cost_complexity_pruning_path(X_train, y_train)
     ccp_alphas, _ = path.ccp_alphas, path.impurities
@@ -60,7 +59,7 @@ def compute_alphas(model, X_train, y_train, random_state=35):
     search.fit(X_train, y_train)
     return search
 
-# Ermittelt den Alphawert mit dem höchsten Score
+# return alpha with the highest score
 def select_alpha(alphas):
     max_score = max([x[1] for x in alphas])
     return [x[0] for x in alphas if x[1] == max_score][0]
